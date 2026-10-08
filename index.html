@@ -14,7 +14,10 @@
     </header>
 
     <section class="game-card" aria-label="Game board and controls">
-      <p id="status" class="status" role="status" aria-live="polite" aria-atomic="true" data-player="X">X's turn</p>
+      <div class="game-toolbar">
+        <p id="status" class="status" role="status" aria-live="polite" aria-atomic="true" data-player="X">X's turn</p>
+        <button id="new-round" type="button" class="control-btn">New Round</button>
+      </div>
 
       <div id="board" class="board" role="group" aria-label="Tic-tac-toe board">
         <button class="cell" type="button" data-index="0" aria-label="Cell 1"></button>
@@ -28,21 +31,15 @@
         <button class="cell" type="button" data-index="8" aria-label="Cell 9"></button>
       </div>
 
-      <div class="controls">
-        <button id="new-round" type="button" class="control-btn">New Round</button>
-      </div>
     </section>
 
     <section class="score-card" aria-label="Scoreboard">
-      <div class="score-header">
-        <h2>Scoreboard</h2>
-        <button id="reset-scores" type="button" class="control-btn control-btn-secondary">Reset Scores</button>
-      </div>
       <div class="scores">
         <p class="score-x"><span class="score-label">X wins</span><span id="score-x" class="score-value">0</span></p>
         <p class="score-o"><span class="score-label">O wins</span><span id="score-o" class="score-value">0</span></p>
         <p><span class="score-label">Draws</span><span id="score-draws" class="score-value">0</span></p>
       </div>
+      <button id="reset-scores" type="button" class="control-btn control-btn-secondary" aria-label="Reset Scores">Reset</button>
     </section>
   </main>
 

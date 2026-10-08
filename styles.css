@@ -26,13 +26,13 @@ body {
   background: linear-gradient(160deg, var(--bg-top), var(--bg-bottom));
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: 12px;
 }
 
 .app {
-  width: min(100%, 520px);
+  width: min(100%, 420px);
   display: grid;
-  gap: 16px;
+  gap: 10px;
 }
 
 .header {
@@ -41,11 +41,12 @@ body {
 
 .header h1 {
   margin: 0;
-  font-size: clamp(1.8rem, 4vw, 2.2rem);
+  font-size: clamp(1.6rem, 4vw, 1.9rem);
 }
 
 .subtitle {
-  margin: 8px 0 0;
+  margin: 4px 0 0;
+  font-size: 0.9rem;
   color: var(--text-secondary);
 }
 
@@ -58,18 +59,26 @@ body {
 }
 
 .game-card {
-  padding: 20px;
+  padding: 14px;
   display: grid;
-  gap: 16px;
+  gap: 12px;
+}
+
+.game-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
 }
 
 .status {
   margin: 0;
-  padding: 10px 12px;
+  padding: 10px 8px;
   border-radius: 10px;
   background: #f6f9ff;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
+  line-height: 24px;
   font-weight: 600;
 }
 
@@ -98,9 +107,12 @@ button:focus-visible {
 }
 
 .board {
+  /* Fit shorter screens without making the tap targets unnecessarily tiny. */
+  width: min(100%, max(210px, calc(100svh - 250px)));
+  justify-self: center;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  gap: 8px;
 }
 
 .cell {
@@ -163,16 +175,12 @@ button:focus-visible {
   }
 }
 
-.controls {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
 .control-btn {
   border: none;
   border-radius: 12px;
-  padding: 12px 14px;
-  font-size: 0.98rem;
+  padding: 10px 12px;
+  min-height: 44px;
+  font-size: 0.9rem;
   font-weight: 600;
   background: var(--accent);
   color: #fff;
@@ -202,61 +210,39 @@ button:focus-visible {
 }
 
 .score-card {
-  padding: 16px 20px;
-}
-
-.score-header {
+  padding: 10px 12px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.score-card h2 {
-  margin: 0;
-  font-size: 1rem;
+  gap: 8px;
 }
 
 .scores {
+  flex: 1;
+  min-width: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
+  gap: 4px;
 }
 
 .scores p {
   margin: 0;
-  padding: 8px 10px;
+  padding: 4px;
   border-radius: 10px;
   background: #f6f9ff;
   text-align: center;
   font-weight: 600;
   display: grid;
-  gap: 4px;
+  gap: 2px;
 }
 
 .score-label {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: var(--text-secondary);
 }
 
 .score-value {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-weight: 800;
-}
-
-@media (max-width: 480px) {
-  body {
-    padding: 14px;
-  }
-
-  .game-card {
-    padding: 16px;
-  }
-
-  .score-card {
-    padding: 12px 16px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
