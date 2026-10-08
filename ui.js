@@ -6,6 +6,11 @@ const resetScoresButton = document.getElementById("reset-scores");
 const scoreXElement = document.getElementById("score-x");
 const scoreOElement = document.getElementById("score-o");
 const scoreDrawsElement = document.getElementById("score-draws");
+const cellPositions = [
+  "Top left", "Top middle", "Top right",
+  "Middle left", "Center", "Middle right",
+  "Bottom left", "Bottom middle", "Bottom right"
+];
 
 const game = window.createGame();
 
@@ -29,6 +34,7 @@ function initGame() {
   newRoundButton.addEventListener("click", () => {
     game.newRound();
     render();
+    cells[0].focus();
   });
 
   resetScoresButton.addEventListener("click", () => {
@@ -52,14 +58,22 @@ function render() {
   cells.forEach((cell, index) => {
     const value = state.board[index];
     cell.textContent = value ?? "";
-    cell.disabled = state.isGameOver || value !== null;
-    cell.classList.remove("win");
+    // Keep cells focusable so keyboard users can inspect the completed board.
+    cell.setAttribute("aria-disabled", String(state.isGameOver || value !== null));
+    const isWinningCell = state.winningPattern?.includes(index) ?? false;
+    cell.setAttribute("aria-label", `${cellPositions[index]}, ${value ?? "empty"}${isWinningCell ? ", winning cell" : ""}`);
+    cell.classList.toggle("win", isWinningCell);
+    cell.classList.toggle("mark-x", value === "X");
+    cell.classList.toggle("mark-o", value === "O");
   });
 
-  if (state.winningPattern) {
-    state.winningPattern.forEach((index) => {
-      cells[index].classList.add("win");
-    });
+  statusElement.classList.toggle("is-complete", state.isGameOver);
+  newRoundButton.textContent = state.isGameOver ? "Play Again" : "New Round";
+  const displayedPlayer = state.isGameOver && !state.winningPattern ? null : state.currentPlayer;
+  if (displayedPlayer) {
+    statusElement.dataset.player = displayedPlayer;
+  } else {
+    delete statusElement.dataset.player;
   }
 
   if (state.isGameOver) {

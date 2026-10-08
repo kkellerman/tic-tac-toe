@@ -10,13 +10,13 @@
   <main class="app" aria-labelledby="game-title">
     <header class="header">
       <h1 id="game-title">Tic-Tac-Toe</h1>
-      <p class="subtitle">Classic mode with persistent scores</p>
+      <p class="subtitle">Two players &bull; One device</p>
     </header>
 
     <section class="game-card" aria-label="Game board and controls">
-      <p id="status" class="status" role="status" aria-live="polite">X's turn</p>
+      <p id="status" class="status" role="status" aria-live="polite" aria-atomic="true" data-player="X">X's turn</p>
 
-      <div id="board" class="board" role="grid" aria-label="Tic-tac-toe board">
+      <div id="board" class="board" role="group" aria-label="Tic-tac-toe board">
         <button class="cell" type="button" data-index="0" aria-label="Cell 1"></button>
         <button class="cell" type="button" data-index="1" aria-label="Cell 2"></button>
         <button class="cell" type="button" data-index="2" aria-label="Cell 3"></button>
@@ -30,16 +30,18 @@
 
       <div class="controls">
         <button id="new-round" type="button" class="control-btn">New Round</button>
-        <button id="reset-scores" type="button" class="control-btn control-btn-secondary">Reset Scores</button>
       </div>
     </section>
 
     <section class="score-card" aria-label="Scoreboard">
-      <h2>Scoreboard</h2>
+      <div class="score-header">
+        <h2>Scoreboard</h2>
+        <button id="reset-scores" type="button" class="control-btn control-btn-secondary">Reset Scores</button>
+      </div>
       <div class="scores">
-        <p>X: <span id="score-x">0</span></p>
-        <p>O: <span id="score-o">0</span></p>
-        <p>Draws: <span id="score-draws">0</span></p>
+        <p class="score-x"><span class="score-label">X wins</span><span id="score-x" class="score-value">0</span></p>
+        <p class="score-o"><span class="score-label">O wins</span><span id="score-o" class="score-value">0</span></p>
+        <p><span class="score-label">Draws</span><span id="score-draws" class="score-value">0</span></p>
       </div>
     </section>
   </main>

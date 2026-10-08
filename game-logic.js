@@ -70,7 +70,11 @@ class TicTacToeGame {
 
   resetScores() {
     this.scores = { x: 0, o: 0, draws: 0 };
-    localStorage.removeItem(SCORE_STORAGE_KEY);
+    try {
+      localStorage.removeItem(SCORE_STORAGE_KEY);
+    } catch (error) {
+      // Scores still reset for this session when storage is unavailable.
+    }
   }
 
   getState() {
@@ -133,7 +137,11 @@ class TicTacToeGame {
   }
 
   saveScores() {
-    localStorage.setItem(SCORE_STORAGE_KEY, JSON.stringify(this.scores));
+    try {
+      localStorage.setItem(SCORE_STORAGE_KEY, JSON.stringify(this.scores));
+    } catch (error) {
+      // Keep playing with session scores when storage is unavailable or full.
+    }
   }
 }
 
