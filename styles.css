@@ -245,7 +245,26 @@ button:focus-visible {
   font-weight: 800;
 }
 
+.confetti-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 8px;
+  height: 12px;
+  border-radius: 2px;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .confetti-layer {
+    display: none;
+  }
+
   .cell,
   .cell.mark-x,
   .cell.mark-o,
